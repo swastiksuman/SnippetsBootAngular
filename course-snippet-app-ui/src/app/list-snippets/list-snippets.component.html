@@ -1,0 +1,33 @@
+<h1>List Of Snippets</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Language</th>
+      <th>Code</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of listOfSnippets">
+      <th>{{ item.id }}</th>
+      <th>{{ item.name }}</th>
+      <th>{{ item.language }}</th>
+      <th>{{ item.code }}</th>
+      <th>
+        <span class="glyphicon glyphicon-pencil" (click)="showSnippet( item )"></span>
+
+      </th>
+    </tr>
+  </tbody>
+</table>
+
+<button class="btn-primary" (click)="showAddToggle()">Show Add</button>
+
+<div *ngIf="showAdd">
+<app-add-snippet (addSnippetEvent)="addSnippetEventHandler($event)"></app-add-snippet>
+</div>
+<div *ngIf="showUpdate">
+<app-view-snippets (deleteSnippetEvent)="deleteSnippetEventHandler($event)" [currentSnippet]="selectedSnippet"></app-view-snippets>
+</div>

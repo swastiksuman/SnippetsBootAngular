@@ -1,0 +1,5 @@
+<label>Name</label><input type="text" [(ngModel)] = "currentSnippet.name">
+<label>Language</label><input type="text" [(ngModel)] = "currentSnippet.language">
+<label>Code</label><input type="text" [(ngModel)] = "currentSnippet.code">
+<button class="btn-primary" (click)= "updateSnippets()">Update Snippet</button>
+<button class="btn-danger" (click)= "deleteSnippets()">Delete Snippet</button>
