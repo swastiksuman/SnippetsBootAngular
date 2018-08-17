@@ -13,7 +13,7 @@ export class AddSnippetsComponent {
   addSnippetEvent: EventEmitter<CodeSnippets> = new EventEmitter();
 
   name = '';
-  langugage = '';
+  language = '';
   code = '';
 
   constructor() { }
@@ -22,7 +22,7 @@ export class AddSnippetsComponent {
     const newSnippet: CodeSnippets = {
       'id': 1,
       'name': this.name,
-      'language': this.langugage,
+      'language': this.language,
       'code': this.code
     };
     this.addSnippetEvent.emit(newSnippet);
