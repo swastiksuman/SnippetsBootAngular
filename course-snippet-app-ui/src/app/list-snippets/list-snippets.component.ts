@@ -23,8 +23,7 @@ export class ListSnippetsComponent {
   constructor(private snippetsService: SnippetsServices) {
     snippetsService.getTasks().subscribe(
       (data: CodeSnippets[]) => {
-        this.listOfSnippets.push(data[0]);
-        this.listOfSnippets.push(data[1]);
+        this.listOfSnippets = data;
       },
       err => {
       }

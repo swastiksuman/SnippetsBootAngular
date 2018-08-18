@@ -1,10 +1,23 @@
 package com.snippet.snippetapp.models;
 
+import com.snippet.snippetapp.entities.Snippets;
+
 public class SnippetsVO {
 	private Long id;
 	private String name;
 	private Language language;
 	private String code;
+
+	public SnippetsVO() {
+		super();
+	}
+
+	public SnippetsVO(Snippets snippets) {
+		this.id = snippets.getId();
+		this.name = snippets.getName();
+		this.language = snippets.getLanguage();
+		this.code = snippets.getCode();
+	}
 
 	public SnippetsVO(Long id, String name, Language language, String code) {
 		super();
@@ -44,5 +57,10 @@ public class SnippetsVO {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	@Override
+	public String toString() {
+		return "SnippetsVO [id=" + id + ", name=" + name + ", language=" + language + ", code=" + code + "]";
 	}
 }

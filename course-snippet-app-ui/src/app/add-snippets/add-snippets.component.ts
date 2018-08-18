@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CodeSnippets } from '../list-snippets/list-snippets.component';
+import { SnippetsServices } from '../list-snippets/snippets.services';
 
 
 @Component({
@@ -12,20 +13,23 @@ export class AddSnippetsComponent {
   @Output()
   addSnippetEvent: EventEmitter<CodeSnippets> = new EventEmitter();
 
-  name = '';
-  language = '';
-  code = '';
+  name: string;
+  language: string;
+  code: string;
 
-  constructor() { }
+  constructor(private snippetsService: SnippetsServices) {
+    console.log('Add Const Initialized');
+   }
 
-  saveSnippets(){
+  saveSnippets() {
     const newSnippet: CodeSnippets = {
-      'id': 1,
+      'id': null,
       'name': this.name,
       'language': this.language,
       'code': this.code
     };
-    this.addSnippetEvent.emit(newSnippet);
+    console.log(newSnippet);
+    this.snippetsService.saveSnippet(newSnippet);
   }
 
 }
