@@ -29,5 +29,5 @@
 <app-add-snippet (addSnippetEvent)="addSnippetEventHandler($event)"></app-add-snippet>
 </div>
 <div *ngIf="showUpdate">
-<app-view-snippets (deleteSnippetEvent)="deleteSnippetEventHandler($event)" [currentSnippet]="selectedSnippet"></app-view-snippets>
+<app-view-snippets [currentSnippet]="selectedSnippet"></app-view-snippets>
 </div>

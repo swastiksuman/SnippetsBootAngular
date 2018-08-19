@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { SnippetsServices } from './snippets.services';
 
-export interface CodeSnippets{
+export interface CodeSnippets {
   id: number;
   name: string;
   language: string;
@@ -31,13 +31,11 @@ export class ListSnippetsComponent {
 
    }
 
-  ngOnInit() { }
-
-  addSnippetEventHandler(event: CodeSnippets){
+  addSnippetEventHandler(event: CodeSnippets) {
     this.listOfSnippets.push(event);
   }
 
-  showSnippet(snippet: CodeSnippets){
+  showSnippet(snippet: CodeSnippets) {
     this.showAdd = false;
     this.showUpdate = true;
     console.log('SSS');
@@ -45,11 +43,11 @@ export class ListSnippetsComponent {
     this.selectedSnippet = snippet;
   }
 
-  showAddToggle(){
+  showAddToggle() {
     this.showAdd = !this.showAdd;
   }
 
-  deleteSnippetEventHandler(event: CodeSnippets){
+  deleteSnippetEventHandler(event: CodeSnippets) {
     console.log('Delete Handler');
     this.listOfSnippets.splice(this.listOfSnippets.indexOf(event), 1);
   }

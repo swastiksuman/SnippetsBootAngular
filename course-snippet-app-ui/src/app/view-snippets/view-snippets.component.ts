@@ -10,18 +10,16 @@ import { SnippetsServices } from '../list-snippets/snippets.services';
 
 export class ViewComponent {
 
-  @Output()
+  /* @Output()
   deleteSnippetEvent: EventEmitter<CodeSnippets> = new EventEmitter();
-
-
+ */
   @Input()
   currentSnippet: CodeSnippets = {'id': 0, 'name': '', 'language': '', 'code': '', };
 
   constructor(private snippetsService: SnippetsServices) {
-
     console.log(snippetsService.getTasks().subscribe(
       data => {
-        console.log(data)
+        console.log(data);
       },
       err => {
 
@@ -29,15 +27,12 @@ export class ViewComponent {
     ));
   }
 
-  onDelete() {
-    //this.deleteSnippetEvent.emit(this.id);
-   }
-
-  updateSnippets(){
-
+  updateSnippets() {
+    console.log('updateSnippets');
+    this.snippetsService.saveSnippet(this.currentSnippet);
   }
 
-  deleteSnippets(){
-    this.deleteSnippetEvent.emit(this.currentSnippet);
+  deleteSnippets() {
+    this.snippetsService.deleteSnippet(this.currentSnippet.id);
   }
 }

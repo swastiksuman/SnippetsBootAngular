@@ -24,4 +24,13 @@ saveSnippet(codeSnippets: CodeSnippets) {
     console.log(data);
   });
 }
+
+deleteSnippet(id: number) {
+  console.log('ID to be deleted' + id);
+  const headers = new Headers({ 'Content-Type': 'application/json' });
+  const options = new RequestOptions({headers: headers });
+  this.http.delete('http://localhost:8080/snippets/deletesnippet/' + id, options).subscribe((data) => {
+    console.log(data);
+  });
+}
 }

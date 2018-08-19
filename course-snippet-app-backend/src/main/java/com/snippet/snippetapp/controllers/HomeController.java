@@ -7,7 +7,9 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +45,13 @@ public class HomeController {
 		snippetsList.add(snippetVO);
 		snippetsRepository.save(new Snippets(snippetVO));
 		System.out.println(snippetsList);
+		return "success";
+	}
+
+	@DeleteMapping("/deletesnippet/{idToDelete}")
+	public String deleteSnippet(@PathVariable("idToDelete") Long id) {
+		System.out.println("ID to be deleted "+id);
+		snippetsRepository.deleteById(id);
 		return "success";
 	}
 }
