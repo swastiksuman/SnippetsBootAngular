@@ -33,4 +33,10 @@ deleteSnippet(id: number) {
     console.log(data);
   });
 }
+
+getSnippetById(id: number) {
+  const headers = new Headers({ 'Content-Type': 'application/json' });
+  const options = new RequestOptions({headers: headers });
+  return this.http.get('http://localhost:8080/snippets/getsnippet/' + id, options).pipe(map((response) => response.json()));
+}
 }

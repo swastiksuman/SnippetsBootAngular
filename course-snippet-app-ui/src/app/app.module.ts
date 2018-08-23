@@ -8,6 +8,7 @@ import { AddSnippetsComponent } from './add-snippets/add-snippets.component';
 import { ViewComponent } from './view-snippets/view-snippets.component';
 import { HttpModule } from '@angular/http';
 import { SnippetsServices } from './list-snippets/snippets.services';
+import { AppRouting } from './app-routing.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { SnippetsServices } from './list-snippets/snippets.services';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRouting
   ],
   providers: [SnippetsServices],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CodeSnippets } from '../list-snippets/list-snippets.component';
 import { SnippetsServices } from '../list-snippets/snippets.services';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -8,25 +9,23 @@ import { SnippetsServices } from '../list-snippets/snippets.services';
   templateUrl: './view-snippets.component.html'
 })
 
-export class ViewComponent {
+export class ViewComponent implements OnInit {
 
   /* @Output()
   deleteSnippetEvent: EventEmitter<CodeSnippets> = new EventEmitter();
  */
-  @Input()
-  currentSnippet: CodeSnippets = {'id': 0, 'name': '', 'language': '', 'code': '', };
+  currentSnippet: CodeSnippets;
 
-  constructor(private snippetsService: SnippetsServices) {
-    console.log(snippetsService.getTasks().subscribe(
-      data => {
-        console.log(data);
-      },
-      err => {
+  constructor(private snippetsService: SnippetsServices, private route: ActivatedRoute) { }
 
+  ngOnInit() {
+    const productId = this.route.snapshot.params['id'];
+    this.snippetsService.getSnippetById(productId).subscribe(
+      (data: CodeSnippets) => {
+        this.currentSnippet = data;
       }
-    ));
+    );
   }
-
   updateSnippets() {
     console.log('updateSnippets');
     this.snippetsService.saveSnippet(this.currentSnippet);

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, OnChanges, OnDestroy, DoCheck, ChangeDetectorRef } from '@angular/core';
 import { SnippetsServices } from './snippets.services';
 
 export interface CodeSnippets {
@@ -13,23 +13,26 @@ export interface CodeSnippets {
   templateUrl: 'list-snippets.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class ListSnippetsComponent {
+export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCheck {
 
   listOfSnippets: CodeSnippets[] = [];
   selectedSnippet: CodeSnippets;
   showAdd = false;
   showUpdate = false;
 
-  constructor(private snippetsService: SnippetsServices) {
-    snippetsService.getTasks().subscribe(
+  constructor(private snippetsService: SnippetsServices, private changeRef: ChangeDetectorRef) {
+   }
+
+  ngOnInit() {
+    console.log('List On Init Call');
+    this.snippetsService.getTasks().subscribe(
       (data: CodeSnippets[]) => {
         this.listOfSnippets = data;
       },
       err => {
       }
     );
-
-   }
+  }
 
   addSnippetEventHandler(event: CodeSnippets) {
     this.listOfSnippets.push(event);
@@ -50,5 +53,17 @@ export class ListSnippetsComponent {
   deleteSnippetEventHandler(event: CodeSnippets) {
     console.log('Delete Handler');
     this.listOfSnippets.splice(this.listOfSnippets.indexOf(event), 1);
+  }
+
+  ngOnChanges() {
+    console.log('List Snippet On Changes');
+  }
+
+  ngOnDestroy() {
+    console.log('List Snippet On Destroy');
+  }
+
+  ngDoCheck() {
+    this.changeRef.detectChanges();
   }
 }

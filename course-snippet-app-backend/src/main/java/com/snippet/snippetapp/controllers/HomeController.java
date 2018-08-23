@@ -54,4 +54,10 @@ public class HomeController {
 		snippetsRepository.deleteById(id);
 		return "success";
 	}
+	
+	@GetMapping("/getsnippet/{id}")
+	public SnippetsVO getSnippetById(@PathVariable("id") Long id){
+		return new SnippetsVO(snippetsRepository.findById(id).get());
+	}
+	
 }

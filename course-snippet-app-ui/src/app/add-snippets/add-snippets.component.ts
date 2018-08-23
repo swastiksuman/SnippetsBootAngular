@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { CodeSnippets } from '../list-snippets/list-snippets.component';
 import { SnippetsServices } from '../list-snippets/snippets.services';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { SnippetsServices } from '../list-snippets/snippets.services';
   templateUrl: './add-snippets.component.html'
 })
 
-export class AddSnippetsComponent {
+export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy{
 
   @Output()
   addSnippetEvent: EventEmitter<CodeSnippets> = new EventEmitter();
@@ -17,7 +18,7 @@ export class AddSnippetsComponent {
   language: string;
   code: string;
 
-  constructor(private snippetsService: SnippetsServices) {
+  constructor(private snippetsService: SnippetsServices, private route: Router) {
     console.log('Add Const Initialized');
    }
 
@@ -30,6 +31,18 @@ export class AddSnippetsComponent {
     };
     console.log(newSnippet);
     this.snippetsService.saveSnippet(newSnippet);
+    this.route.navigateByUrl('/');
   }
 
+  ngOnInit() {
+    console.log('Inside Add Snippet Init');
+  }
+
+  ngOnChanges() {
+    console.log('Inside Add Snippet On Changes');
+  }
+
+  ngOnDestroy() {
+    console.log('Inside Add Snippet On Destroy');
+  }
 }
