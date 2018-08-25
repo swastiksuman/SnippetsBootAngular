@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy{
 
   @Output()
-  addSnippetEvent: EventEmitter<CodeSnippets> = new EventEmitter();
+  newSnippetAdded: EventEmitter<CodeSnippets> = new EventEmitter();
 
   name: string;
   language: string;
@@ -31,6 +31,7 @@ export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy{
     };
     console.log(newSnippet);
     this.snippetsService.saveSnippet(newSnippet);
+    this.newSnippetAdded.emit(newSnippet);
   }
 
   ngOnInit() {

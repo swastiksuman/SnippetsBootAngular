@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, OnChanges, OnDestroy, DoCheck, ChangeDetectorRef } from '@angular/core';
 import { SnippetsServices } from './snippets.services';
+import { timeInterval } from 'rxjs/operators';
 
 export interface CodeSnippets {
   id: number;
@@ -65,7 +66,9 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
   }
 
   ngDoCheck() {
-    console.log('DO Check List Snippet');
-    this.changeRef.detectChanges();
+  }
+
+  updateSnippet(newSnippet: CodeSnippets) {
+    this.ngOnInit();
   }
 }

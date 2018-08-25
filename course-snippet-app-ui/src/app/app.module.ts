@@ -9,6 +9,7 @@ import { ViewComponent } from './view-snippets/view-snippets.component';
 import { HttpModule } from '@angular/http';
 import { SnippetsServices } from './list-snippets/snippets.services';
 import { AppRouting } from './app-routing.module';
+import { ColorDirective } from './text-color.directive';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AppRouting } from './app-routing.module';
     AppComponent,
     ListSnippetsComponent,
     AddSnippetsComponent,
-    ViewComponent
+    ViewComponent,
+    ColorDirective
   ],
   imports: [
     BrowserModule,
