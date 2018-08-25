@@ -31,7 +31,6 @@ export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy{
     };
     console.log(newSnippet);
     this.snippetsService.saveSnippet(newSnippet);
-    this.route.navigateByUrl('/');
   }
 
   ngOnInit() {

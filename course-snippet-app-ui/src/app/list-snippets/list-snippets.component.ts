@@ -47,6 +47,7 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
   }
 
   showAddToggle() {
+    console.log('Inside show add' + this.showAdd);
     this.showAdd = !this.showAdd;
   }
 
@@ -64,6 +65,7 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
   }
 
   ngDoCheck() {
+    console.log('DO Check List Snippet');
     this.changeRef.detectChanges();
   }
 }

@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CodeSnippets } from '../list-snippets/list-snippets.component';
 import { SnippetsServices } from '../list-snippets/snippets.services';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 
 @Component({
@@ -14,24 +14,27 @@ export class ViewComponent implements OnInit {
   /* @Output()
   deleteSnippetEvent: EventEmitter<CodeSnippets> = new EventEmitter();
  */
-  currentSnippet: CodeSnippets;
+  currentSnippet: CodeSnippets = {id: 0, name: '', language: '', code: ''};
 
-  constructor(private snippetsService: SnippetsServices, private route: ActivatedRoute) { }
-
-  ngOnInit() {
-    const productId = this.route.snapshot.params['id'];
+  constructor(private snippetsService: SnippetsServices, private activatedRoute: ActivatedRoute, private route: Router) {
+    const productId = this.activatedRoute.snapshot.params['id'];
     this.snippetsService.getSnippetById(productId).subscribe(
       (data: CodeSnippets) => {
         this.currentSnippet = data;
       }
     );
+   }
+
+  ngOnInit() {
   }
   updateSnippets() {
     console.log('updateSnippets');
     this.snippetsService.saveSnippet(this.currentSnippet);
+    this.route.navigate(['/']);
   }
 
   deleteSnippets() {
     this.snippetsService.deleteSnippet(this.currentSnippet.id);
+    this.route.navigate(['/']);
   }
 }

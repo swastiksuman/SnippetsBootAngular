@@ -38,21 +38,21 @@ public class HomeController {
 		return listOfAllSnippets;
 	}
 
-	@PostMapping("/savesnippet")
-	public String saveSnippet(@RequestBody SnippetsVO snippetVO) {
+	@PostMapping(value="/savesnippet", produces="application/json")
+	public SnippetsVO saveSnippet(@RequestBody SnippetsVO snippetVO) {
 		System.out.println(snippetVO);
 		System.out.println(snippetVO);
 		snippetsList.add(snippetVO);
 		snippetsRepository.save(new Snippets(snippetVO));
 		System.out.println(snippetsList);
-		return "success";
+		return snippetVO;
 	}
 
-	@DeleteMapping("/deletesnippet/{idToDelete}")
+	@DeleteMapping(value="/deletesnippet/{idToDelete}", produces="application/json")
 	public String deleteSnippet(@PathVariable("idToDelete") Long id) {
 		System.out.println("ID to be deleted "+id);
 		snippetsRepository.deleteById(id);
-		return "success";
+		return "\"success\": 1";
 	}
 	
 	@GetMapping("/getsnippet/{id}")

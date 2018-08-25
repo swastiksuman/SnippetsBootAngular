@@ -22,5 +22,6 @@
   </tbody>
 </table>
 
-<button class="btn-primary" [routerLink]="['/addSnippet']">Show Add</button>
+<button class="btn-primary" (onclick)="showAddToggle()">Create New</button>
+<app-add-snippet></app-add-snippet>
 <router-outlet></router-outlet>
