@@ -1,6 +1,7 @@
-import { Component, ViewEncapsulation, OnInit, OnChanges, OnDestroy, DoCheck, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, OnChanges, OnDestroy, DoCheck, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { SnippetsServices } from './snippets.services';
 import { timeInterval } from 'rxjs/operators';
+import { AddSnippetsComponent } from '../add-snippets/add-snippets.component';
 
 export interface CodeSnippets {
   id: number;
@@ -21,6 +22,8 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
   showAdd = false;
   showUpdate = false;
 
+  @ViewChild(AddSnippetsComponent) addInfo;
+
   constructor(private snippetsService: SnippetsServices, private changeRef: ChangeDetectorRef) {
    }
 
@@ -33,6 +36,7 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
       err => {
       }
     );
+    console.log(this.addInfo.name + 'update');
   }
 
   addSnippetEventHandler(event: CodeSnippets) {

@@ -10,6 +10,7 @@ import { HttpModule } from '@angular/http';
 import { SnippetsServices } from './list-snippets/snippets.services';
 import { AppRouting } from './app-routing.module';
 import { ColorDirective } from './text-color.directive';
+import { AppFooterComponent } from './app-footer/app-footer.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ColorDirective } from './text-color.directive';
     ListSnippetsComponent,
     AddSnippetsComponent,
     ViewComponent,
-    ColorDirective
+    ColorDirective,
+    AppFooterComponent
   ],
   imports: [
     BrowserModule,
