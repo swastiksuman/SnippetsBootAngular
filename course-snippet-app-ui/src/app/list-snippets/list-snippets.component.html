@@ -22,6 +22,8 @@
   </tbody>
 </table>
 
-<button class="btn-primary" (onclick)="showAddToggle()">Create New</button>
+<button class="btn-primary" (click)="showAddToggle()">{{showAdd ? 'Cancel':'Create'}}</button>
+<div *ngIf='showAdd'>
 <app-add-snippet (newSnippetAdded)='updateSnippet($event)'></app-add-snippet>
+</div>
 <router-outlet></router-outlet>
