@@ -3,7 +3,7 @@ import {Injectable, EventEmitter} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {log} from 'util';
 import { CodeSnippets } from './list-snippets.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -38,5 +38,16 @@ getSnippetById(id: number): Observable<CodeSnippets> {
   const headers = new Headers({ 'Content-Type': 'application/json' });
   const options = new RequestOptions({headers: headers });
   return this.http.get<CodeSnippets>('http://localhost:8080/snippets/getsnippet/' + id);
+}
+
+testParameter() {
+  const params = new HttpParams({
+    fromObject: {
+      first_name: 'ss',
+      last_name: 'pp'
+    }
+  });
+
+  this.http.post('http://localhost:8080/snippets/testpost', params).subscribe((data) => console.log(data), (err) => console.log(err));
 }
 }

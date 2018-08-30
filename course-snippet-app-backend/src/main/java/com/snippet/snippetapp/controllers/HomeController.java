@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.snippet.snippetapp.entities.Snippets;
@@ -39,7 +42,7 @@ public class HomeController {
 	}
 
 	@PostMapping(value="/savesnippet", produces="application/json")
-	public SnippetsVO saveSnippet(@RequestBody SnippetsVO snippetVO) {
+	public SnippetsVO saveSnippet(@RequestBody @Valid SnippetsVO snippetVO) {
 		System.out.println(snippetVO);
 		System.out.println(snippetVO);
 		snippetsList.add(snippetVO);
@@ -59,5 +62,11 @@ public class HomeController {
 	public SnippetsVO getSnippetById(@PathVariable("id") Long id){
 		return new SnippetsVO(snippetsRepository.findById(id).get());
 	}
+	
+	@PostMapping("/testpost")
+	public void someTest(@RequestParam("first_name") String firstName, @RequestParam("last_name") String lastName){
+		System.out.println(firstName+lastName);
+	}
+	
 	
 }

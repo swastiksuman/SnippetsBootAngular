@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './add-snippets.component.html'
 })
 
-export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy{
+export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output()
   newSnippetAdded: EventEmitter<CodeSnippets> = new EventEmitter();
