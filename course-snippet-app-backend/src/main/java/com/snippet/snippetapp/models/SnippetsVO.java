@@ -1,9 +1,13 @@
 package com.snippet.snippetapp.models;
 
+import javax.validation.constraints.Size;
+
 import com.snippet.snippetapp.entities.Snippets;
 
 public class SnippetsVO {
 	private Long id;
+	
+	@Size(min=3, max=255)
 	private String name;
 	private Language language;
 	private String code;

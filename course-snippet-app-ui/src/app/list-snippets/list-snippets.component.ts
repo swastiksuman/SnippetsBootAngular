@@ -75,4 +75,9 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
   updateSnippet(newSnippet: CodeSnippets) {
     this.ngOnInit();
   }
+
+  test() {
+    console.log('test');
+    this.snippetsService.testParameter();
+  }
 }

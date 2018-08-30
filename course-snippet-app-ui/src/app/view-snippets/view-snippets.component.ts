@@ -9,7 +9,6 @@ import { map } from 'rxjs/operators';
   selector: 'app-view-snippets',
   templateUrl: './view-snippets.component.html'
 })
-
 export class ViewComponent implements OnInit {
 
   /* @Output()
@@ -28,6 +27,7 @@ export class ViewComponent implements OnInit {
       (data: CodeSnippets) => {
       this.currentSnippet = data;
     }
+
   );
    }
 
