@@ -11,9 +11,9 @@ import { map } from 'rxjs/operators';
 })
 export class ViewComponent implements OnInit {
 
-  /* @Output()
+  @Output()
   deleteSnippetEvent: EventEmitter<CodeSnippets> = new EventEmitter();
- */
+
   currentSnippet: CodeSnippets = {id: 0, name: '', language: '', code: ''};
 
   constructor(private snippetsService: SnippetsServices, private activatedRoute: ActivatedRoute, private route: Router) {
@@ -41,6 +41,6 @@ export class ViewComponent implements OnInit {
 
   deleteSnippets() {
     this.snippetsService.deleteSnippet(this.currentSnippet.id);
-    this.route.navigate(['/']);
+    this.deleteSnippetEvent.emit();
   }
 }

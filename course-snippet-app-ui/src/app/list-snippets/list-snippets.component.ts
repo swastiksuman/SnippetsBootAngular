@@ -2,12 +2,18 @@ import { Component, ViewEncapsulation, OnInit, OnChanges, OnDestroy, DoCheck, Ch
 import { SnippetsServices } from './snippets.services';
 import { timeInterval } from 'rxjs/operators';
 import { AddSnippetsComponent } from '../add-snippets/add-snippets.component';
+import { Subscription } from 'rxjs';
 
 export interface CodeSnippets {
   id: number;
   name: string;
   language: string;
   code: string;
+}
+
+export interface AvailableLanguages {
+  id: number;
+  language: string;
 }
 
 @Component({
@@ -21,6 +27,7 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
   selectedSnippet: CodeSnippets;
   showAdd = false;
   showUpdate = false;
+  private codeSnippetSubscription: Subscription;
 
   @ViewChild(AddSnippetsComponent) addInfo;
 
@@ -28,14 +35,10 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
    }
 
   ngOnInit() {
-    console.log('List On Init Call');
-    this.snippetsService.getTasks().subscribe(
-      (data: CodeSnippets[]) => {
-        this.listOfSnippets = data;
-      },
-      err => {
-      }
-    );
+    this.snippetsService.getSnippets();
+    this.codeSnippetSubscription = this.snippetsService.getSnippetUpdateListener().subscribe((data: CodeSnippets[]) => {
+      this.listOfSnippets = data;
+    });
     console.log(this.addInfo.name + 'update');
   }
 
@@ -73,11 +76,16 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
   }
 
   updateSnippet(newSnippet: CodeSnippets) {
-    this.ngOnInit();
+    console.log('update snippet called');
+    //this.ngOnInit();
   }
 
   test() {
     console.log('test');
     this.snippetsService.testParameter();
+  }
+
+  delete() {
+    console.log('Delete Called');
   }
 }

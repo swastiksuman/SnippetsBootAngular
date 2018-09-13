@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.snippet.snippetapp.entities.Snippets;
+import com.snippet.snippetapp.entities.SupportedLanguages;
 import com.snippet.snippetapp.models.Language;
 import com.snippet.snippetapp.models.SnippetsVO;
 import com.snippet.snippetapp.repositories.ISnippetsRepository;
+import com.snippet.snippetapp.repositories.ISupportedLanguagesRepository;
 
 @CrossOrigin
 @RestController
@@ -31,6 +33,9 @@ public class HomeController {
 
 	@Autowired
 	ISnippetsRepository snippetsRepository;
+	
+	@Autowired
+	ISupportedLanguagesRepository supportedLanguagesRepository;
 
 	@GetMapping("/allsnippets")
 	public List<SnippetsVO> getAllSnippets() {
@@ -68,5 +73,12 @@ public class HomeController {
 		System.out.println(firstName+lastName);
 	}
 	
+	@GetMapping("/getSupportedLanguages")
+	public List<SupportedLanguages> getListOfSupportedLanguages(){
+		System.out.println("Supported Languages Called");
+		List<SupportedLanguages> listOfSupportedLanguages = new ArrayList<SupportedLanguages>();
+		supportedLanguagesRepository.findAll().forEach((data) -> listOfSupportedLanguages.add(data));
+		return listOfSupportedLanguages;
+	}
 	
 }

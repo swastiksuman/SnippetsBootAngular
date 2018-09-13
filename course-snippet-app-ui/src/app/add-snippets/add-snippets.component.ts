@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, OnInit, OnChanges, OnDestroy } from '@angular/core';
-import { CodeSnippets } from '../list-snippets/list-snippets.component';
+import { CodeSnippets, AvailableLanguages } from '../list-snippets/list-snippets.component';
 import { SnippetsServices } from '../list-snippets/snippets.services';
 import { Router } from '@angular/router';
 
@@ -17,6 +17,7 @@ export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy {
   name: string;
   language: string;
   code: string;
+  languageList: AvailableLanguages[];
 
   constructor(private snippetsService: SnippetsServices, private route: Router) {
     console.log('Add Const Initialized');
@@ -35,6 +36,9 @@ export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
+    this.snippetsService.getLanguageDropdown().subscribe((data: AvailableLanguages[]) => {
+      this.languageList = data;
+    });
     console.log('Inside Add Snippet Init');
   }
 

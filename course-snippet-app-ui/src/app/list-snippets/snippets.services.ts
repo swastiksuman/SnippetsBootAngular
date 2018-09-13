@@ -2,18 +2,31 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import {Injectable, EventEmitter} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {log} from 'util';
-import { CodeSnippets } from './list-snippets.component';
+import { CodeSnippets, AvailableLanguages } from './list-snippets.component';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class SnippetsServices  {
-  constructor(private http: HttpClient) {
+
+eventEmitter: EventEmitter<CodeSnippets[]> = new EventEmitter();
+
+  private codeSnippets: CodeSnippets[] = [];
+  private codeUpdated = new Subject<CodeSnippets[]>();
+
+  constructor(private http: HttpClient, ) {
 
    }
 
-getTasks(): Observable<CodeSnippets[]> {
-  return this.http.get<CodeSnippets[]>('http://localhost:8080/snippets/allsnippets');
+getSnippets() {
+  this.http.get<CodeSnippets[]>('http://localhost:8080/snippets/allsnippets').subscribe((data) => {
+    this.codeSnippets = data;
+    this.codeUpdated.next([...this.codeSnippets]);
+  });
+}
+
+getSnippetUpdateListener() {
+  return this.codeUpdated.asObservable();
 }
 
 saveSnippet(codeSnippets: CodeSnippets) {
@@ -24,6 +37,7 @@ saveSnippet(codeSnippets: CodeSnippets) {
     console.log(data);
   });
 }
+
 
 deleteSnippet(id: number) {
   console.log('ID to be deleted' + id);
@@ -49,5 +63,9 @@ testParameter() {
   });
 
   this.http.post('http://localhost:8080/snippets/testpost', params).subscribe((data) => console.log(data), (err) => console.log(err));
+}
+
+getLanguageDropdown() {
+  return this.http.get('http://localhost:8080/snippets/getSupportedLanguages');
 }
 }
