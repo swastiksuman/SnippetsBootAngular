@@ -1,5 +1,17 @@
-<label>Name</label><input type="text" [(ngModel)] = "currentSnippet.name">
-<label>Language</label><input type="text" [(ngModel)] = "currentSnippet.language">
-<label appColor>Code</label><input type="text" [(ngModel)] = "currentSnippet.code">
-<button class="btn-primary" (click)= "updateSnippets()">Update Snippet</button>
-<button class="btn-danger" (click)= "deleteSnippets()">Delete Snippet</button>
+<div class="col-lg-12">
+  <div class="col-lg-3">
+    <label>Name</label><input class="form-control" type="text" [(ngModel)]="currentSnippet.name">
+  </div>
+  <div class="col-lg-3">
+    <label>Language</label><select class="form-control" type="text" [(ngModel)]="currentSnippet.language">
+        <option *ngFor="let option of languageList" [ngValue]="option.language">{{option.language}}</option>
+    </select>
+  </div>
+  <div class="col-lg-3">
+    <label appColor>Code</label><input class="form-control" type="text" [(ngModel)]="currentSnippet.code">
+  </div>
+  <div class="col-lg-3">
+    <button class="btn-primary" (click)="updateSnippets()">Update Snippet</button>
+    <button class="btn-danger" (click)="deleteSnippets()">Delete Snippet</button>
+  </div>
+</div>

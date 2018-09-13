@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { CodeSnippets } from '../list-snippets/list-snippets.component';
+import { CodeSnippets, AvailableLanguages } from '../list-snippets/list-snippets.component';
 import { SnippetsServices } from '../list-snippets/snippets.services';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -13,7 +13,7 @@ export class ViewComponent implements OnInit {
 
   @Output()
   deleteSnippetEvent: EventEmitter<CodeSnippets> = new EventEmitter();
-
+  languageList: AvailableLanguages[];
   currentSnippet: CodeSnippets = {id: 0, name: '', language: '', code: ''};
 
   constructor(private snippetsService: SnippetsServices, private activatedRoute: ActivatedRoute, private route: Router) {
@@ -32,6 +32,9 @@ export class ViewComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.snippetsService.getLanguageDropdown().subscribe((data: AvailableLanguages[]) => {
+      this.languageList = data;
+    });
   }
   updateSnippets() {
     console.log('updateSnippets');
