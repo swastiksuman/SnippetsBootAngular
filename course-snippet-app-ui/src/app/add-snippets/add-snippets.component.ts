@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, OnInit, OnChanges, OnDestroy } from '@
 import { CodeSnippets, AvailableLanguages } from '../list-snippets/list-snippets.component';
 import { SnippetsServices } from '../list-snippets/snippets.services';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -48,5 +49,18 @@ export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnDestroy() {
     console.log('Inside Add Snippet On Destroy');
+  }
+
+  onSubmit(form: NgForm){
+    console.log(form);
+    const newSnippet: CodeSnippets = {
+      'id': null,
+      'name': form.value.name,
+      'language': form.value.language,
+      'code': form.value.code
+    };
+    console.log(newSnippet);
+    this.snippetsService.saveSnippet(newSnippet);
+    this.newSnippetAdded.emit(newSnippet);
   }
 }
