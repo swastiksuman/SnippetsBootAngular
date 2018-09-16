@@ -7,7 +7,8 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-snippet',
-  templateUrl: './add-snippets.component.html'
+  templateUrl: './add-snippets.component.html',
+  styleUrls: ['./add-snippets.component.css']
 })
 
 export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy {
@@ -51,7 +52,7 @@ export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy {
     console.log('Inside Add Snippet On Destroy');
   }
 
-  onSubmit(form: NgForm){
+  onSubmit(form: NgForm) {
     console.log(form);
     const newSnippet: CodeSnippets = {
       'id': null,
