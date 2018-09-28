@@ -23,7 +23,11 @@
 </table>
 <button class="btn-primary" (click)="test()">Test</button>
 <button class="btn-primary" (click)="showAddToggle()">{{showAdd ? 'Cancel':'Create'}}</button>
+<button class="btn-primary" (click)="showAddReactiveToggle()">{{showAddReactive ? 'Cancel':'Create Reactive'}}</button>
 <div *ngIf='showAdd'>
 <app-add-snippet (newSnippetAdded)='updateSnippet($event)'></app-add-snippet>
+</div>
+<div *ngIf='showAddReactive'>
+  <app-add-snippet-reactive></app-add-snippet-reactive>
 </div>
 <router-outlet (deleteSnippetEvent)='delete($event)'></router-outlet>

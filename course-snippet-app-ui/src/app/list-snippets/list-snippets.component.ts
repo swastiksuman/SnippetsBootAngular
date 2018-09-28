@@ -28,6 +28,7 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
   showAdd = false;
   showUpdate = false;
   private codeSnippetSubscription: Subscription;
+  showAddReactive = false;
 
   @ViewChild(AddSnippetsComponent) addInfo;
 
@@ -87,5 +88,9 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
 
   delete() {
     console.log('Delete Called');
+  }
+
+  showAddReactiveToggle() {
+    this.showAddReactive = !this.showAddReactive;
   }
 }

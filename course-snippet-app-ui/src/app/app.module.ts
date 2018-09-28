@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, Component } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { SnippetsServices } from './list-snippets/snippets.services';
 import { AppRouting } from './app-routing.module';
 import { ColorDirective } from './text-color.directive';
 import { AppFooterComponent } from './app-footer/app-footer.component';
+import { AddSnippetsReactiveComponent } from './add-snippets-reactive/add-snippets-reactive.component';
 
 
 @NgModule({
@@ -20,10 +21,12 @@ import { AppFooterComponent } from './app-footer/app-footer.component';
     AddSnippetsComponent,
     ViewComponent,
     ColorDirective,
-    AppFooterComponent
+    AppFooterComponent,
+    AddSnippetsReactiveComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpModule,
     HttpClientModule,
