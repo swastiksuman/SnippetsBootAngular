@@ -28,6 +28,6 @@
 <app-add-snippet (newSnippetAdded)='updateSnippet($event)'></app-add-snippet>
 </div>
 <div *ngIf='showAddReactive'>
-  <app-add-snippet-reactive></app-add-snippet-reactive>
+  <app-add-snippet-reactive (newSnippetAdded)='updateSnippet($event)'></app-add-snippet-reactive>
 </div>
 <router-outlet (deleteSnippetEvent)='delete($event)'></router-outlet>

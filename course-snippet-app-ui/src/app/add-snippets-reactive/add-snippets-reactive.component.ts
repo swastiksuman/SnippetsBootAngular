@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { AvailableLanguages } from '../list-snippets/list-snippets.component';
+import { AvailableLanguages, CodeSnippets } from '../list-snippets/list-snippets.component';
 import { SnippetsServices } from '../list-snippets/snippets.services';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-snippet-reactive',
@@ -14,7 +15,11 @@ export class AddSnippetsReactiveComponent implements OnInit {
   snippetForm: FormGroup;
   languageList: AvailableLanguages[];
 
-  constructor(private formBuilder: FormBuilder, private snippetsService: SnippetsServices) { }
+  @Output()
+  newSnippetAdded: EventEmitter<CodeSnippets> = new EventEmitter();
+
+  constructor(private formBuilder: FormBuilder, private snippetsService: SnippetsServices, private activeRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     this.snippetsService.getLanguageDropdown().subscribe((data: AvailableLanguages[]) => {
@@ -22,13 +27,14 @@ export class AddSnippetsReactiveComponent implements OnInit {
     });
     this.snippetForm = new FormGroup({
       name: new FormControl(''),
-      languagle: new FormControl(''),
+      language: new FormControl(''),
       code: new FormControl('')
     });
   }
 
   onSubmit() {
-    console.log(this.snippetForm);
+    this.snippetsService.saveSnippet(this.snippetForm.value);
+    this.newSnippetAdded.emit(this.snippetForm.value);
   }
 
 }

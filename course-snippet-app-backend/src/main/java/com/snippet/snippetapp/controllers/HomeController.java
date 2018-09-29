@@ -60,7 +60,7 @@ public class HomeController {
 	public String deleteSnippet(@PathVariable("idToDelete") Long id) {
 		System.out.println("ID to be deleted "+id);
 		snippetsRepository.deleteById(id);
-		return "\"success\": 1";
+		return "{\"success\": 1}";
 	}
 	
 	@GetMapping("/getsnippet/{id}")

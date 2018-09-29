@@ -45,5 +45,6 @@ export class ViewComponent implements OnInit {
   deleteSnippets() {
     this.snippetsService.deleteSnippet(this.currentSnippet.id);
     this.deleteSnippetEvent.emit();
+    this.route.navigate(['/']);
   }
 }
