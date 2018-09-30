@@ -14,7 +14,7 @@ export class AddSnippetsReactiveComponent implements OnInit {
 
   snippetForm: FormGroup;
   languageList: AvailableLanguages[];
-
+  forbiddenNames: string[] = ['Kutta', 'Kamina'];
   @Output()
   newSnippetAdded: EventEmitter<CodeSnippets> = new EventEmitter();
 
@@ -26,15 +26,24 @@ export class AddSnippetsReactiveComponent implements OnInit {
       this.languageList = data;
     });
     this.snippetForm = new FormGroup({
-      name: new FormControl(''),
+      name: new FormControl('', this.nameValidator.bind(this)),
       language: new FormControl(''),
       code: new FormControl('')
     });
   }
 
   onSubmit() {
+    console.log(this.snippetForm.valid);
     this.snippetsService.saveSnippet(this.snippetForm.value);
     this.newSnippetAdded.emit(this.snippetForm.value);
+  }
+
+  nameValidator(control: FormControl): {[s: string]: boolean}{
+    if (this.forbiddenNames.indexOf(control.value) !== -1) {
+      return {'forbidden name': true};
+    } else {
+      return null;
+    }
   }
 
 }
