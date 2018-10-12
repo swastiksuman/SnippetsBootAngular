@@ -61,7 +61,8 @@ export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy {
       'code': form.value.code
     };
     console.log(newSnippet);
-    this.snippetsService.saveSnippet(newSnippet);
-    this.newSnippetAdded.emit(newSnippet);
+    this.snippetsService.saveSnippet(newSnippet).subscribe(data => {
+      this.newSnippetAdded.emit(data);
+    });
   }
 }

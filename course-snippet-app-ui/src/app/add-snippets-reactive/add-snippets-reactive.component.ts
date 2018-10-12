@@ -34,8 +34,10 @@ export class AddSnippetsReactiveComponent implements OnInit {
 
   onSubmit() {
     console.log(this.snippetForm.valid);
-    this.snippetsService.saveSnippet(this.snippetForm.value);
-    this.newSnippetAdded.emit(this.snippetForm.value);
+    this.snippetsService.saveSnippet(this.snippetForm.value).subscribe(data => {
+      console.log(data);
+      this.newSnippetAdded.emit(data);
+    });
   }
 
   nameValidator(control: FormControl): {[s: string]: boolean}{

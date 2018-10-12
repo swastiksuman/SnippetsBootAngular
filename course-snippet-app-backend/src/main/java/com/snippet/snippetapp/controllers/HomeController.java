@@ -51,8 +51,8 @@ public class HomeController {
 		System.out.println(snippetVO);
 		System.out.println(snippetVO);
 		snippetsList.add(snippetVO);
-		snippetsRepository.save(new Snippets(snippetVO));
-		System.out.println(snippetsList);
+		Snippets newSnippets = snippetsRepository.save(new Snippets(snippetVO));
+		snippetVO.setId(newSnippets.getId());
 		return snippetVO;
 	}
 

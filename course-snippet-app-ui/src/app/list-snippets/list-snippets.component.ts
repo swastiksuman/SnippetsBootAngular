@@ -77,8 +77,7 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
   }
 
   updateSnippet(newSnippet: CodeSnippets) {
-    console.log('update snippet called');
-    //this.ngOnInit();
+    this.listOfSnippets.push(newSnippet);
   }
 
   test() {
@@ -86,7 +85,7 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
     this.snippetsService.testParameter();
   }
 
-  delete() {
+  delete(event) {
     console.log('Delete Called');
   }
 

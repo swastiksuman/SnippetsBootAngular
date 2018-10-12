@@ -29,13 +29,11 @@ getSnippetUpdateListener() {
   return this.codeUpdated.asObservable();
 }
 
-saveSnippet(codeSnippets: CodeSnippets) {
+saveSnippet(codeSnippets: CodeSnippets): Observable<any> {
   console.log('Inside Save Snippet');
   const headers = new Headers({ 'Content-Type': 'application/json' });
   const options = new RequestOptions({headers: headers });
-  this.http.post('http://localhost:8080/snippets/savesnippet', codeSnippets).subscribe((data) => {
-    console.log(data);
-  });
+  return this.http.post('http://localhost:8080/snippets/savesnippet', codeSnippets);
 }
 
 
