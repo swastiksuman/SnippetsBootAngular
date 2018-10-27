@@ -12,6 +12,7 @@ import { AppRouting } from './app-routing.module';
 import { ColorDirective } from './text-color.directive';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AddSnippetsReactiveComponent } from './add-snippets-reactive/add-snippets-reactive.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AddSnippetsReactiveComponent } from './add-snippets-reactive/add-snippe
     FormsModule,
     HttpModule,
     HttpClientModule,
-    AppRouting
+    AppRouting,
+    NgSelectModule
   ],
   providers: [SnippetsServices],
   bootstrap: [AppComponent]

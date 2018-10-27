@@ -1,4 +1,9 @@
 <h1>List Of Snippets</h1>
+<ng-select [items]="listOfSnippets"
+           bindLabel="name"
+           bindValue="id"
+           [(ngModel)]="filteredSnippet" (change)="search()">
+</ng-select>
 <table class="table table-striped">
   <thead>
     <tr>

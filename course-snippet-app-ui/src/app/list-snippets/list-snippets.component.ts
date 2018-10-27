@@ -29,7 +29,8 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
   showUpdate = false;
   private codeSnippetSubscription: Subscription;
   showAddReactive = false;
-
+  people : string[];
+  filteredSnippet;
   @ViewChild(AddSnippetsComponent) addInfo;
 
   constructor(private snippetsService: SnippetsServices, private changeRef: ChangeDetectorRef) {
@@ -41,6 +42,7 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
       this.listOfSnippets = data;
     });
     console.log(this.addInfo.name + 'update');
+    this.people = ['Souj', 'Swas', 'Shan', 'Jyo'];
   }
 
   addSnippetEventHandler(event: CodeSnippets) {
@@ -91,5 +93,13 @@ export class ListSnippetsComponent implements OnInit, OnChanges, OnDestroy, DoCh
 
   showAddReactiveToggle() {
     this.showAddReactive = !this.showAddReactive;
+  }
+
+  search() {
+    if (this.filteredSnippet !== undefined) {
+      this.listOfSnippets = this.listOfSnippets.filter(snippet =>
+        this.filteredSnippet === snippet.id
+      );
+    }
   }
 }
