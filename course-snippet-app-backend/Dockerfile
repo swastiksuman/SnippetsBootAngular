@@ -9,6 +9,7 @@ VOLUME /tmp
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8080
+EXPOSE 5432
 
 # The application's jar file
 ARG JAR_FILE=target/snippet-app-0.0.1-SNAPSHOT.jar
