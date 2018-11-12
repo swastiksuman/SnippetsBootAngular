@@ -19,7 +19,7 @@ eventEmitter: EventEmitter<CodeSnippets[]> = new EventEmitter();
    }
 
 getSnippets() {
-  this.http.get<CodeSnippets[]>('http://localhost:8080/snippets/allsnippets').subscribe((data) => {
+  this.http.get<CodeSnippets[]>('snippets/allsnippets').subscribe((data) => {
     this.codeSnippets = data;
     this.codeUpdated.next([...this.codeSnippets]);
   });
@@ -33,7 +33,7 @@ saveSnippet(codeSnippets: CodeSnippets): Observable<any> {
   console.log('Inside Save Snippet');
   const headers = new Headers({ 'Content-Type': 'application/json' });
   const options = new RequestOptions({headers: headers });
-  return this.http.post('http://localhost:8080/snippets/savesnippet', codeSnippets);
+  return this.http.post('snippets/savesnippet', codeSnippets);
 }
 
 
@@ -41,7 +41,7 @@ deleteSnippet(id: number) {
   console.log('ID to be deleted' + id);
   const headers = new Headers({ 'Content-Type': 'application/json' });
   const options = new RequestOptions({headers: headers });
-  this.http.delete('http://localhost:8080/snippets/deletesnippet/' + id).subscribe((data) => {
+  this.http.delete('snippets/deletesnippet/' + id).subscribe((data) => {
     console.log(data);
   }, (error) => console.log(error), () => console.log('delete complete'));
 }
@@ -49,7 +49,7 @@ deleteSnippet(id: number) {
 getSnippetById(id: number): Observable<CodeSnippets> {
   const headers = new Headers({ 'Content-Type': 'application/json' });
   const options = new RequestOptions({headers: headers });
-  return this.http.get<CodeSnippets>('http://localhost:8080/snippets/getsnippet/' + id);
+  return this.http.get<CodeSnippets>('snippets/getsnippet/' + id);
 }
 
 testParameter() {
@@ -60,10 +60,10 @@ testParameter() {
     }
   });
 
-  this.http.post('http://localhost:8080/snippets/testpost', params).subscribe((data) => console.log(data), (err) => console.log(err));
+  this.http.post('snippets/testpost', params).subscribe((data) => console.log(data), (err) => console.log(err));
 }
 
 getLanguageDropdown() {
-  return this.http.get('http://localhost:8080/snippets/getSupportedLanguages');
+  return this.http.get('snippets/getSupportedLanguages');
 }
 }
