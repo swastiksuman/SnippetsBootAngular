@@ -339,7 +339,7 @@ var AppRouting = /** @class */ (function () {
     }
     AppRouting = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, { onSameUrlNavigation: 'reload' })],
+            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, { onSameUrlNavigation: 'reload', useHash: true })],
             exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]],
             declarations: [],
             providers: [_view_snippets_view_snippet_resolver__WEBPACK_IMPORTED_MODULE_4__["ViewSnippetResolver"]],
