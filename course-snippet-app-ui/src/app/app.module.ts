@@ -13,6 +13,7 @@ import { ColorDirective } from './text-color.directive';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AddSnippetsReactiveComponent } from './add-snippets-reactive/add-snippets-reactive.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ViewComponent,
     ColorDirective,
     AppFooterComponent,
-    AddSnippetsReactiveComponent
+    AddSnippetsReactiveComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
