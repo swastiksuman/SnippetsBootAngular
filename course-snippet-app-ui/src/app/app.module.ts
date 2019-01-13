@@ -14,7 +14,8 @@ import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AddSnippetsReactiveComponent } from './add-snippets-reactive/add-snippets-reactive.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { LoginComponent } from './login/login.component';
-
+import { ChatBotComponent } from './chat-bot/chat-bot.component';
+import { ChatService } from './chat-bot/chat-bot.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     ColorDirective,
     AppFooterComponent,
     AddSnippetsReactiveComponent,
-    LoginComponent
+    LoginComponent,
+    ChatBotComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ import { LoginComponent } from './login/login.component';
     AppRouting,
     NgSelectModule
   ],
-  providers: [SnippetsServices],
+  providers: [SnippetsServices, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
