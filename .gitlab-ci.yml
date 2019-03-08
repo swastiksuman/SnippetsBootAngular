@@ -1,0 +1,7 @@
+before_script:
+        - cd course-snippet-app-backend
+        - npm install
+        - npm run build
+        - cd..
+        - cd course-snippet-app-ui
+        - mvn clean package
