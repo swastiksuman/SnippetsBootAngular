@@ -4,12 +4,14 @@ cache:
   - node_modules/
 
 before_script:
+        - npm --version
+build-angular:
         - cd course-snippet-app-ui
         - npm install copyfiles -g
         - npm install
         - npm run build
-        - cd ..
-buildapp:
+        - cd ..        
+build-maven:
         script:
                 - cd course-snippet-app-backend
                 - ./mvnw clean package
