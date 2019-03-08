@@ -12,5 +12,5 @@ before_script:
 buildapp:
         script:
                 - cd course-snippet-app-backend
-                - mvn clean package
+                - ./mvnw clean package
         
