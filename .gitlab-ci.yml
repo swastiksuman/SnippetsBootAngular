@@ -1,4 +1,4 @@
-image: jimador/docker-jdk-8-maven-node
+image: timbru31/java-node
 cache:
   paths:
   - node_modules/
