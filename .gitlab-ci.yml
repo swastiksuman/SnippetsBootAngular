@@ -8,7 +8,7 @@ before_script:
         - cd course-snippet-app-ui
         - npm install copyfiles -g
         - npm install
-        - cd..  
+        - cd ..  
 build-angular:
         script:
                 - cd course-snippet-app-ui
