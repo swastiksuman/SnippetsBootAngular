@@ -5,11 +5,13 @@ cache:
 
 before_script:
         - npm --version
+        - cd course-snippet-app-ui
+        - npm install copyfiles -g
+        - npm install
+        - cd..  
 build-angular:
         script:
                 - cd course-snippet-app-ui
-                - npm install copyfiles -g
-                - npm install
                 - npm run build
                 - cd ..        
 build-maven:
