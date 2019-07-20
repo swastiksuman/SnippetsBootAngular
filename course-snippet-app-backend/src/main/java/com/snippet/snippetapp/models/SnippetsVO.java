@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 import com.snippet.snippetapp.entities.Snippets;
 
 public class SnippetsVO {
-	private Long id;
+	private String id;
 	
 	@Size(min=3, max=255)
 	private String name;
@@ -23,7 +23,7 @@ public class SnippetsVO {
 		this.code = snippets.getCode();
 	}
 
-	public SnippetsVO(Long id, String name, Language language, String code) {
+	public SnippetsVO(String id, String name, Language language, String code) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -31,11 +31,11 @@ public class SnippetsVO {
 		this.code = code;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

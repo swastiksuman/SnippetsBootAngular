@@ -57,14 +57,14 @@ public class HomeController {
 	}
 
 	@DeleteMapping(value="/deletesnippet/{idToDelete}", produces="application/json")
-	public String deleteSnippet(@PathVariable("idToDelete") Long id) {
+	public String deleteSnippet(@PathVariable("idToDelete") String id) {
 		System.out.println("ID to be deleted "+id);
 		snippetsRepository.deleteById(id);
 		return "{\"success\": 1}";
 	}
 	
 	@GetMapping("/getsnippet/{id}")
-	public SnippetsVO getSnippetById(@PathVariable("id") Long id){
+	public SnippetsVO getSnippetById(@PathVariable("id") String id){
 		return new SnippetsVO(snippetsRepository.findById(id).get());
 	}
 	

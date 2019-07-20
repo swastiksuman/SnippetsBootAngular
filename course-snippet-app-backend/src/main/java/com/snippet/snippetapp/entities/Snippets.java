@@ -1,25 +1,19 @@
 package com.snippet.snippetapp.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.snippet.snippetapp.models.Language;
 import com.snippet.snippetapp.models.SnippetsVO;
 
-@Entity
-@Table(name = "SNIPPETS")
+@Document(collection = "snippets")
 public class Snippets {
 
 	@Id
-	@GeneratedValue
-	private Long id;
+	private String id;
 	private String name;
 
-	@Enumerated(EnumType.ORDINAL)
 	private Language language;
 
 	private String code;
@@ -35,11 +29,11 @@ public class Snippets {
 			this.id = snippetsVO.getId();
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
