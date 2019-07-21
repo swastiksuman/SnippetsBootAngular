@@ -78,6 +78,7 @@ public class HomeController {
 		System.out.println("Supported Languages Called");
 		List<SupportedLanguages> listOfSupportedLanguages = new ArrayList<SupportedLanguages>();
 		supportedLanguagesRepository.findAll().forEach((data) -> listOfSupportedLanguages.add(data));
+		System.out.println(listOfSupportedLanguages);
 		return listOfSupportedLanguages;
 	}
 	

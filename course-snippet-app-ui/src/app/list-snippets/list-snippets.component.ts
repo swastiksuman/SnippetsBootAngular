@@ -12,7 +12,7 @@ export interface CodeSnippets {
 }
 
 export interface AvailableLanguages {
-  id: number;
+  id: string;
   language: string;
 }
 

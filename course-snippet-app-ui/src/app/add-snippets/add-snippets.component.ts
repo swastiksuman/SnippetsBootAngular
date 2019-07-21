@@ -39,8 +39,9 @@ export class AddSnippetsComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     this.snippetsService.getLanguageDropdown().subscribe((data: AvailableLanguages[]) => {
-      this.languageList = data;
+      
     });
+    this.languageList = [{"id":"5d3418d81c9d440000e930ae","language":"Java"}, {"id":"5d3418d81c9d440000e930af","language":"C"}];
     console.log('Inside Add Snippet Init');
   }
 

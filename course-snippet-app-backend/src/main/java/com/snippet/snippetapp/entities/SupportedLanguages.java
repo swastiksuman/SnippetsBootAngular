@@ -3,7 +3,7 @@ package com.snippet.snippetapp.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "languages")
 public class SupportedLanguages {
 	
 	@Id
