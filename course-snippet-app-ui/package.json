@@ -24,7 +24,7 @@
     "@angular/platform-browser-dynamic": "^7.0.1",
     "@angular/router": "^7.0.1",
     "@ng-select/ng-select": "^2.11.2",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "core-js": "^2.5.4",
     "dialogflow": "^0.7.0",
     "rxjs": "^6.3.3",
